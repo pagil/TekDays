@@ -23,6 +23,6 @@ class TekEventSpec extends Specification {
             tekEvent.toString() == expectedString
         where:
             name         | city        | organizer   | expectedString
-            'Groovy One' | 'Melbourne' | 'Peter Pen' | "TekEvent{name='Groovy One', city='Melbourne'}"
+            'Groovy One' | 'Melbourne' | 'Peter Pen' | "TekEvent{name='GroovyOne', city='Melbourne'}"
     }
 }
