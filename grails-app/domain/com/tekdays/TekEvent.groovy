@@ -3,6 +3,13 @@ package com.tekdays
 class TekEvent {
 
     static constraints = {
+        name()
+        city()
+        description maxSize: 5000
+        organizer()
+        venue()
+        startDate()
+        endDate()
     }
 
     String city
