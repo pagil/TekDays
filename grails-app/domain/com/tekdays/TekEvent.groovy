@@ -18,9 +18,11 @@ class TekEvent {
         venue()
         startDate()
         endDate()
+        volunteers nullable: true
+        sponsorships nullable: true
     }
 
-    static hasMany = [volunteers: TekUser]
+    static hasMany = [volunteers: TekUser, responders: String, sponsorships: Sponsorship]
 
     @Override
     public String toString() {
