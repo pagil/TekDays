@@ -17,12 +17,12 @@ class TekEventSpec extends Specification {
 
     void "test toString"() {
         when: "a tekEvent has a name and a city"
-            def tekEvent = new TekEvent(name: name, city: city, organizer: organizer)
+            def tekEvent = new TekEvent(name: name, city: city, organizer: [fullName: 'John Doe'] as TekUser)
 
         then: "the toString method will combine them"
             tekEvent.toString() == expectedString
         where:
             name         | city        | organizer   | expectedString
-            'Groovy One' | 'Melbourne' | 'Peter Pen' | "TekEvent{name='GroovyOne', city='Melbourne'}"
+            'Groovy One' | 'Melbourne' | 'Peter Pen' | "TekEvent{name='Groovy One', city='Melbourne'}"
     }
 }

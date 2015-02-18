@@ -18,7 +18,6 @@ class TekUser {
 
     @Override
     public String toString() {
-        return "TekUser{" +
-                "fullName='" + fullName + '}';
+        return fullName;
     }
 }

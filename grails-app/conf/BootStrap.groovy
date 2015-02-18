@@ -4,23 +4,6 @@ import com.tekdays.TekUser
 class BootStrap {
 
     def init = { servletContext ->
-        def events = [new TekEvent(name: 'JUG meetup',
-                city: 'Melbourne, VIC',
-                organizer: 'Kon',
-                venue: 'TBD',
-                startDate: new Date('21/02/2015'),
-                endDate: new Date('21/02/2015'),
-                description: 'This conference brings together developers who use Java in their work.'),
-                      new TekEvent(name: 'RoR meetup',
-                              city: 'Melbourne, VIC',
-                              organizer: 'reInteractive',
-                              venue: 'TBD',
-                              startDate: new Date('25/02/2015'),
-                              endDate: new Date('25/02/2015'),
-                              description: 'This conference brings together developers who use Ruby on Rails in their work.')]
-
-        persistList(events, 'event')
-
         def users = [new TekUser(fullName: 'John Doe',
                 userName: 'jdoe',
                 password: 't0ps3cr3t',
@@ -40,6 +23,23 @@ class BootStrap {
                         good hand around the farm. If he can't program it he
                         can plow it!''').save()]
         persistList(users, 'event')
+
+        def events = [new TekEvent(name: 'JUG meetup',
+                city: 'Melbourne, VIC',
+                organizer: TekUser.findByFullName('John Doe'),
+                venue: 'TBD',
+                startDate: new Date('21/02/2015'),
+                endDate: new Date('21/02/2015'),
+                description: 'This conference brings together developers who use Java in their work.'),
+                      new TekEvent(name: 'RoR meetup',
+                              city: 'Melbourne, VIC',
+                              organizer: TekUser.findByFullName('John Deere'),
+                              venue: 'TBD',
+                              startDate: new Date('25/02/2015'),
+                              endDate: new Date('25/02/2015'),
+                              description: 'This conference brings together developers who use Ruby on Rails in their work.')]
+
+        persistList(events, 'event')
 
     }
 
