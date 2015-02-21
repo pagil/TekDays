@@ -1,7 +1,6 @@
 package com.tekdays
 
 
-
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
@@ -15,14 +14,14 @@ class TekMessageController {
         def list
         def count
         def event = TekEvent.get(params.id)
-        if(event) {
+        if (event) {
             list = TekMessage.findAllByEvent(event, params)
             count = TekMessage.countByEvent(event)
         } else {
             list = TekMessage.list(params)
             count = TekMessage.count()
         }
-        [tekMessageInstanceList: list, tekMessageInstanceCount: count, event: event]
+        render view: 'ajaxIndex', model: [tekMessageInstanceList: list, tekMessageInstanceCount: count, event: event]
     }
 
     def show(TekMessage tekMessageInstance) {
@@ -30,6 +29,8 @@ class TekMessageController {
     }
 
     def create() {
+        println 'VYAFIM: CREATE action'
+        println "VYAFIM: params: ${params}"
         respond new TekMessage(params)
     }
 
@@ -44,11 +45,11 @@ class TekMessageController {
         }
 
         if (tekMessageInstance.hasErrors()) {
-            respond tekMessageInstance.errors, view:'create'
+            respond tekMessageInstance.errors, view: 'create'
             return
         }
 
-        tekMessageInstance.save flush:true
+        tekMessageInstance.save flush: true
 
         request.withFormat {
             form multipartForm {
@@ -71,18 +72,18 @@ class TekMessageController {
         }
 
         if (tekMessageInstance.hasErrors()) {
-            respond tekMessageInstance.errors, view:'edit'
+            respond tekMessageInstance.errors, view: 'edit'
             return
         }
 
-        tekMessageInstance.save flush:true
+        tekMessageInstance.save flush: true
 
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'TekMessage.label', default: 'TekMessage'), tekMessageInstance.id])
                 redirect tekMessageInstance
             }
-            '*'{ respond tekMessageInstance, [status: OK] }
+            '*' { respond tekMessageInstance, [status: OK] }
         }
     }
 
@@ -94,15 +95,30 @@ class TekMessageController {
             return
         }
 
-        tekMessageInstance.delete flush:true
+        tekMessageInstance.delete flush: true
 
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.deleted.message', args: [message(code: 'TekMessage.label', default: 'TekMessage'), tekMessageInstance.id])
-                redirect action:"index", method:"GET"
+                redirect action: "index", method: "GET"
             }
-            '*'{ render status: NO_CONTENT }
+            '*' { render status: NO_CONTENT }
         }
+    }
+
+    def showDetail() {
+        def tekMessageInstance = TekMessage.get(params.id)
+        if (tekMessageInstance) {
+            render(template: "details", model: [tekMessageInstance: tekMessageInstance])
+        } else {
+            render "Mo message found with id: ${params.id}"
+        }
+    }
+
+    def reply = {
+        def parent = TekMessage.get(params.id)
+        def tekMessageInstance = new TekMessage(parent:parent, event:parent.event, subject: "RE: ${parent.subject}")
+        render view: 'create', model:['tekMessageInstance': tekMessageInstance]
     }
 
     protected void notFound() {
@@ -111,7 +127,7 @@ class TekMessageController {
                 flash.message = message(code: 'default.not.found.message', args: [message(code: 'tekMessage.label', default: 'TekMessage'), params.id])
                 redirect action: "index", method: "GET"
             }
-            '*'{ render status: NOT_FOUND }
+            '*' { render status: NOT_FOUND }
         }
     }
 }

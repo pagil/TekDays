@@ -348,6 +348,16 @@ fieldset.embedded legend {
     width:550px
 }
 
+/*Ajaxlist*/
+#messageList {
+    margin: 20px 30px;
+    overflow: auto;
+}
+
+#messageList p {
+    margin: 10px 0;
+}
+
 .errors {
 	background: #fff3f3;
 	border: 1px solid #ffaaaa;
