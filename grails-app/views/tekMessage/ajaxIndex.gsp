@@ -18,11 +18,7 @@
 <div id="list-tekMessage" class="content scaffold-list" role="main">
     <h1>${event?.name} - Forum Message</h1>
     <div id="messageList">
-        <g:each in="${tekMessageInstanceList}" var="tekMessageInstance">
-            <g:remoteLink action="showDetail" id="${tekMessageInstance?.id}" update="details">
-                <p>${tekMessageInstance.author.fullName} - ${tekMessageInstance.subject}</p>
-            </g:remoteLink>
-        </g:each>
+        <g:messageThread messages="${tekMessageInstanceList}" />
     </div>
     <h3>Message Details</h3>
     <div id="details">
