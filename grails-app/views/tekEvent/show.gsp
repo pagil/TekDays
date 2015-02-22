@@ -126,19 +126,16 @@
 				</li>
 				</g:if>
 
-                <g:if test="${tekEventInstance?.messages}">
-                    <li class="fieldcontain">
-                        <span id="message-label" class="property-label">
-                            <g:message code="tekEvent.messages.label" default="Messages" />
-                        </span>
-                        <span class="property-value" aria-labelledby="messages-label">
-                            <g:link controller="tekMessage" action="index" id="${tekEventInstance.id}">
-                                View Messages
-                            </g:link>
-                        </span>
-                    </li>
-
-                </g:if>
+                <li class="fieldcontain">
+                    <span id="message-label" class="property-label">
+                        <g:message code="tekEvent.messages.label" default="Messages" />
+                    </span>
+                    <span class="property-value" aria-labelledby="messages-label">
+                        <g:link controller="tekMessage" action="index" id="${tekEventInstance.id}">
+                            View Messages
+                        </g:link>
+                    </span>
+                </li>
 
 			</ol>
 			<g:form url="[resource:tekEventInstance, action:'delete']" method="DELETE">

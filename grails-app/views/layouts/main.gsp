@@ -23,6 +23,7 @@
             <a href="${createLink(uri: '/')}">
                 <img src="${resource(dir: 'images', file: 'td_logo.png')}" alt="TekDays"/>
             </a>
+            <g:loginToggle />
         </div>
 		<g:layoutBody/>
 		<div class="footer" role="contentinfo"></div>
