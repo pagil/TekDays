@@ -10,7 +10,7 @@ class TekUserController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def loguot = {
+    def logout = {
         session.user = null
         redirect(uri: '/')
     }
