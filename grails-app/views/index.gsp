@@ -16,6 +16,7 @@
         </div>
 
         <g:organizeEvents />
+        <g:volunteerEvents />
 
         <div class="homeCell">
             <h3>Find a Tek Event</h3>
