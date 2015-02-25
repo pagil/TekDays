@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta name="layout" content="main"/>
-		<title>ekDays - The Community is the Conference!</title>
+		<title>TekDays - The Community is the Conference!</title>
 	</head>
 	<body>
 
@@ -14,6 +14,8 @@
             minds with common interests and passions together for the good
             of greater geekdom!</p>
         </div>
+
+        <g:organizeEvents />
 
         <div class="homeCell">
             <h3>Find a Tek Event</h3>
