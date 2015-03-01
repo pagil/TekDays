@@ -110,4 +110,11 @@ class TekEventController {
             '*' { render status: NOT_FOUND }
         }
     }
+
+    def volunteer = {
+        def event = TekEvent.get(params.id)
+        event.addToVolunteers(session.user) // If we handle this action we have logged in user.
+        event.save()
+        render "Thank you for Volunteering!"
+    }
 }

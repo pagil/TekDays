@@ -5,7 +5,9 @@
 	<head>
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'tekEvent.label', default: 'TekEvent')}" />
-		<title><g:message code="default.show.label" args="[entityName]" /></title>
+        <g:javascript library="jquery" />
+        <r:require module="jquery-ui" />
+        <title><g:message code="default.show.label" args="[entityName]" /></title>
 	</head>
 	<body>
 		<a href="#show-tekEvent" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
@@ -147,5 +149,43 @@
 				</fieldset>
 			</g:form>
 		</div>
+
+    <script type="application/javascript">
+        $(document).ready(function(){
+            $('#volunteerDialog').hide();
+            $('#volunteerButton').click(function(){
+                $('#volunteerDialog').dialog({
+                    resizable: false,
+                    height: 180,
+                    width: 420,
+                    modal: false,
+                    buttons: {
+                        'Submit': function() {
+                            $.ajax({
+                                type: 'post',
+                                dataType: 'html',
+                                url: "${g.createLink(action: 'volunteer')}",
+                                async: false,
+                                data:  $('#volunteerForm').serialize(),
+                                success: function (response, status, xml) {
+                                    $('#volunteerSpan').html(response)
+                                }
+                            });
+                            $(this).dialog('close');
+                        },
+                        'Cancel': function() {
+                            $(this).dialog('close');
+                        }
+                    }
+                })
+            })
+        })
+    </script>
+    <div id="volunteerDialog" title="Volunteer for ${tekEventInstance.name}">
+        <g:form name="volunteerForm" action="volunteer">
+            <g:hiddenField name="id" value="${tekEventInstance.id}" />
+            <p>Welcome to the team! Your help will make a huge difference!</p>
+        </g:form>
+    </div>
 	</body>
 </html>
