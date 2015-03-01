@@ -52,6 +52,13 @@ class TekEventController {
         respond tekEventInstance
     }
 
+    def search = {
+        if (params.query) {
+            def events = TekEvent.search(params.query).results
+            [events: events]
+        }
+    }
+
     @Transactional
     def update(TekEvent tekEventInstance) {
         if (tekEventInstance == null) {

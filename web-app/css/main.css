@@ -608,9 +608,10 @@ a.skip {
 }
 /*Index*/
 #homeSearch {
-    margin-left: 30%;
+    margin-left: 20%;
     margin-top: 25px;
     width: 40%;
+    white-space: nowrap;
 }
 #homeSearch label {
     font-weight: bold;

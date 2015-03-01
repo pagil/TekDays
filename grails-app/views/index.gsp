@@ -15,6 +15,14 @@
             of greater geekdom!</p>
         </div>
 
+        <div id="homeSearch">
+            <g:form controller="tekEvent" action="search">
+                <label>Search: </label>
+                <input id="query" type="text" name="query" />
+                <input type="submit" value="Go">
+            </g:form>
+        </div>
+
         <g:organizeEvents />
         <g:volunteerEvents />
 

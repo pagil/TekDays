@@ -23,7 +23,7 @@ class TekEvent {
         tasks nullable: true
         messages nullable: true
     }
-
+    static searchable = true
     static hasMany = [volunteers  : TekUser,
                       responders  : String,
                       sponsorships: Sponsorship,
