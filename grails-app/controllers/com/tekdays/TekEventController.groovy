@@ -16,8 +16,14 @@ class TekEventController {
         respond TekEvent.list(params), model: [tekEventInstanceCount: TekEvent.count()]
     }
 
-    def show(TekEvent tekEventInstance) {
-        respond tekEventInstance
+    def show(Long id) {
+        def tekEventInstance = params.nickname ? TekEvent.findByNickname(params.nickname) : TekEvent.get(id)
+        if (!tekEventInstance) {
+            flash.message = params.nickname ? "TekEvent not found with nickname ${params.nickname}" : "TekEvent not found with id $id"
+            redirect(action: "list")
+            return
+        }
+        [tekEventInstance: tekEventInstance]
     }
 
     def create() {

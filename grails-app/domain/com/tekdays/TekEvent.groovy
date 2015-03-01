@@ -9,6 +9,7 @@ class TekEvent {
     Date startDate
     Date endDate
     String description
+    String nickname
 
     static constraints = {
         name()
@@ -22,6 +23,7 @@ class TekEvent {
         sponsorships nullable: true
         tasks nullable: true
         messages nullable: true
+        nickname nullable: true
     }
     static searchable = true
     static hasMany = [volunteers  : TekUser,

@@ -32,14 +32,16 @@ class BootStrap {
                 venue: 'TBD',
                 startDate: new Date('21/02/2015'),
                 endDate: new Date('21/02/2015'),
-                description: 'This conference brings together developers who use Java in their work.'),
+                description: 'This conference brings together developers who use Java in their work.',
+                nickname: 'GatewayCode'),
                       new TekEvent(name: 'RoR meetup',
                               city: 'Melbourne, VIC',
                               organizer: TekUser.findByFullName('John Deere'),
                               venue: 'TBD',
                               startDate: new Date('25/02/2015'),
                               endDate: new Date('25/02/2015'),
-                              description: 'This conference brings together developers who use Ruby on Rails in their work.')]
+                              description: 'This conference brings together developers who use Ruby on Rails in their work.',
+                              nickname: 'RoR')]
 
         persistList(events, 'event')
 
