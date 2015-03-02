@@ -3,7 +3,9 @@ class SecurityFilters {
         doLogin(controller: '*', action: '*') {
             before = {
 
-                if (!controllerName) {
+                def allowedControllers = ['console']
+
+                if (!controllerName || allowedControllers.contains(controllerName)) {
                     return true
                 }
 

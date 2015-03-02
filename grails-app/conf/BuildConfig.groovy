@@ -45,6 +45,8 @@ grails.project.dependency.resolution = {
         //mavenRepo "http://download.java.net/maven/2/"
         //mavenRepo "http://repository.jboss.com/maven2/"
         mavenRepo "http://repo.grails.org/grails/core"
+        //mavenRepo "http://snapshots.repository.codehouse.org/"
+        //mavenRepo "http://repository.codehaus.org/"
     }
 
     dependencies {
@@ -64,6 +66,8 @@ grails.project.dependency.resolution = {
         compile ":searchable:0.6.9"
         compile ":jquery-ui:1.10.4"
         compile ":twitter4j:4.0.4.3"
+        //compile ":console-enhancements:1.0"
+        compile ":console:1.5.4"
 
         // plugins needed at runtime but not for compilation
         runtime ":hibernate:3.6.10.16" // or ":hibernate4:4.3.5.4"
